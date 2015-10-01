@@ -1,7 +1,6 @@
 package com.ohadr.saml;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,11 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.opensaml.saml2.metadata.provider.AbstractMetadataProvider;
-import org.opensaml.saml2.metadata.provider.MetadataProviderException;
-import org.opensaml.xml.parse.StaticBasicParserPool;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.provider.AuthorizationRequest;
 import org.springframework.security.saml.SAMLEntryPoint;
@@ -31,7 +25,6 @@ public class MySAMLEntryPoint extends SAMLEntryPoint
 	private static Logger log = Logger.getLogger(MySAMLEntryPoint.class);
 
 	private final Map<String, String> subdomains = new HashMap<String, String>();
-	private static final ApplicationContext context = new ClassPathXmlApplicationContext("/saml-securityContext.xml");
 	
     @Override
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException 
