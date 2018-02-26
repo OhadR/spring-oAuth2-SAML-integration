@@ -1,4 +1,5 @@
-# spring-oAuth2-SAML-integration
+# spring-oAuth2-SAML-integration [![Build Status](https://travis-ci.org/OhadR/spring-oAuth2-SAML-integration.svg?branch=master)](https://travis-ci.org/OhadR/spring-oAuth2-SAML-integration)   
+
 How to integrate Spring-oAuth2 with Spring-SAML
 
 Full article is here:
