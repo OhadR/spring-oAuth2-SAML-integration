@@ -20,4 +20,113 @@
 
  	<import resource="classpath:saml-securityContext.xml"/>
 
+    <context:component-scan base-package="com.ohadr" />
+
+	<context:annotation-config />
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler />
+    
+
+	<context:property-placeholder 
+		ignore-resource-not-found="true" 
+		location="classpath:default.properties,${system.properties},classpath:revision.properties" />
+
+    <security:http pattern="/publicKey" security="none" />
+    <security:http pattern="/version" security="none" />
+
+
+    
+    <!-- Protect the /oauth/token url to allow only registered clients -->
+    <!-- this statement enables the access to /oauth/token. without it we get "cannot access" -->
+    <security:http pattern="/oauth/token"  authentication-manager-ref="clientAuthenticationManager">
+        <security:intercept-url pattern="/oauth/token" access="ROLE_CLIENT" requires-channel="https"/>
+        <security:anonymous enabled="false" />
+        <security:http-basic />
+
+        <security:custom-filter ref="clientCredentialsTokenEndpointFilter" before="BASIC_AUTH_FILTER" />
+
+    </security:http>
+
+
+
+    <security:http 	auto-config="true" 
+				    authentication-manager-ref="authenticationManager"
+				    entry-point-ref="samlEntryPoint">    
+		<security:intercept-url pattern="/publicKey" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <!-- security:intercept-url pattern="/oauth/**"	access="ROLE_USER"  requires-channel="https" /-->
+        <security:intercept-url pattern="/oauth/**"	access="ROLE_USER" />
+		<!-- security:intercept-url pattern="/**" access="ROLE_ADMIN"   requires-channel="https" /-->
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY"/>
+
+        <security:anonymous enabled="false"/>
+
+        <security:custom-filter before="FIRST" ref="metadataGeneratorFilter"/>
+        <security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter"/>
+
+	</security:http>
+    
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+    <bean id="clientCredentialsTokenEndpointFilter" class="org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter">
+        <property name="authenticationManager" ref="clientAuthenticationManager" />
+    </bean>
+
+
+	<!-- OAuth2 Configuration -->
+	<oauth:authorization-server
+		client-details-service-ref="clientDetails" 
+		token-services-ref="myAuthorizationServerTokenServices"
+		user-approval-handler-ref="automaticUserApprovalHandler"
+		redirect-resolver-ref="redirectResolver">
+		<oauth:authorization-code authorization-code-services-ref="jdbcAuthorizationCodeServices" />	<!-- store the code in DB so we can suppost multiple tomcats SRV-8313 -->
+		<oauth:implicit />
+		<oauth:refresh-token />
+		<oauth:client-credentials />
+		<oauth:password />
+	</oauth:authorization-server>
+
+	<security:authentication-manager id="clientAuthenticationManager">
+		<security:authentication-provider user-service-ref="clientDetailsUserService" />
+	</security:authentication-manager>
+
+	<bean id="clientDetailsUserService"
+		class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+		<constructor-arg ref="clientDetails" />
+	</bean>
+
+	<bean id="clientDetails"
+		class="org.springframework.security.oauth2.provider.JdbcClientDetailsService">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+
+	<!-- write the oAuth code to the DB; needed in case we have multiple tomcats that need to share the codes 
+		in SAML impl we also write/read the issuer to the DB-->
+	<bean id="jdbcAuthorizationCodeServices"
+		class="org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<!-- write the oAuth refresh-toekn to the DB; needed in case we have multiple tomcats that need to share the tokens -->
+	<bean id="jdbcTokenStore"
+		class="org.springframework.security.oauth2.provider.token.JdbcTokenStore">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_SCHEMA}?allowMultiQueries=true&amp;characterEncoding=UTF-8" />
+		<property name="username" value="${MARS_DB_USER}" />		<!-- OhadDB -->
+		<property name="password" value="${MARS_DB_PASSWORD}" />	<!-- ohadxxx0921 -->
+	</bean>
+    
+    
+
 </beans>
