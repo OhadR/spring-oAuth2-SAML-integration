@@ -21,3 +21,16 @@ Now, consider an application that authenticates its users with oAuth, meaning th
 
 The solution is to create an application ("the bridge") that will be a bridge between oAuth and SAML. When a non-authorized client tries to access the protected resource, it is redirected to the authorization server (this is how oAuth works). But here is the trick: from the client’s point of view– and from the application itself – this bridge functions as a valid "oAuth authorization server". Therefore, there is no need to change anything, not in the client code and not in the application code. On the other hand, instead of opening a popup dialog with username and password, this server functions as an SP and redirects the user to authenticate in front of a pre-configured IdP. 
 
+# How to build? #
+
+	mvn clean install.
+
+# How to run? #
+
+The easiest way is to use tomcat-maven-plugin, by 
+    
+	...\>mvn tomcat7:run
+
+# Questions?
+
+Feel free to open issues here if you have any unclear matter or any other question.
