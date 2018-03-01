@@ -81,8 +81,7 @@
 	<oauth:authorization-server
 		client-details-service-ref="clientDetails" 
 		token-services-ref="myAuthorizationServerTokenServices"
-		user-approval-handler-ref="automaticUserApprovalHandler"
-		redirect-resolver-ref="redirectResolver">
+		user-approval-handler-ref="automaticUserApprovalHandler">
 		<oauth:authorization-code authorization-code-services-ref="jdbcAuthorizationCodeServices" />	<!-- store the code in DB so we can suppost multiple tomcats SRV-8313 -->
 		<oauth:implicit />
 		<oauth:refresh-token />

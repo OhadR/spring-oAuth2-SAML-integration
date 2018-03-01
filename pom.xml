@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>com.ohadr.oauth2</groupId>
 			<artifactId>auth-common</artifactId>
-			<version>${com.ohadr.common-crypto.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 
 

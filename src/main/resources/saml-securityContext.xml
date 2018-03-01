@@ -15,11 +15,12 @@
     <security:http security="none" pattern="/logout.jsp"/>
     <security:http security="none" pattern="/favicon.ico"/>
 
-    <!-- Secured pages -->
+    <!-- Secured pages - ->
     <security:http entry-point-ref="samlEntryPoint">
         <security:custom-filter before="FIRST" ref="metadataGeneratorFilter"/>
         <security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter"/>
     </security:http>
+    -->
 
     <bean id="samlFilter" class="org.springframework.security.web.FilterChainProxy">
         <security:filter-chain-map request-matcher="ant">
