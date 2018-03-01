@@ -3,7 +3,5 @@ language: java
 jdk:
   - oraclejdk8
   
-stages:
-  - compile
-  - test
-  - deploy
+
+script: mvn clean tomcat7:run
