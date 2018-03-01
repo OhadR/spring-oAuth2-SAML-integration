@@ -18,7 +18,7 @@
 		<m2eclipse.wtp.contextRoot>/saml-srv</m2eclipse.wtp.contextRoot>
 		<myScope>compile</myScope>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<com.ohadr.common-crypto.version>1.6.0-RELEASE</com.ohadr.common-crypto.version>
+		<com.ohadr.common-crypto.version>2.1-RELEASE</com.ohadr.common-crypto.version>
 	</properties>
 
 
@@ -31,6 +31,11 @@
 			<version>${com.ohadr.common-crypto.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.ohadr.oauth2</groupId>
+			<artifactId>auth-common</artifactId>
+			<version>${com.ohadr.common-crypto.version}</version>
+		</dependency>
 
 
 		<dependency>
