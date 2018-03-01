@@ -29,7 +29,7 @@
 
 	<context:property-placeholder 
 		ignore-resource-not-found="true" 
-		location="classpath:default.properties,${system.properties},classpath:revision.properties" />
+		location="classpath:default.properties" />
 
     <security:http pattern="/publicKey" security="none" />
     <security:http pattern="/version" security="none" />
