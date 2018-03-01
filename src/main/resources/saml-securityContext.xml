@@ -17,7 +17,6 @@
 
     <!-- Secured pages -->
     <security:http entry-point-ref="samlEntryPoint">
-        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY"/>
         <security:custom-filter before="FIRST" ref="metadataGeneratorFilter"/>
         <security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter"/>
     </security:http>
@@ -89,12 +88,12 @@
     <!-- Filter automatically generates default SP metadata -->
     <bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
         <constructor-arg>
-            <!-- bean class="org.springframework.security.saml.metadata.MetadataGenerator"/-->
-			<bean class="org.springframework.security.saml.metadata.MetadataGenerator">
+            <bean class="org.springframework.security.saml.metadata.MetadataGenerator"/>
+<!-- 			<bean class="org.springframework.security.saml.metadata.MetadataGenerator">
 				<property name="entityId" value="com.ohad"/>
 				<property name="signMetadata" value="false"/>
-				<property name="assertionConsumerIndex" value="1" /><!-- 1=HTTP-POST -->
-			</bean>
+				<property name="assertionConsumerIndex" value="1" />1=HTTP-POST
+ 			</bean>-->
         </constructor-arg>
     </bean>
     
@@ -146,6 +145,7 @@
                         </bean>
                     </constructor-arg>
                 </bean>
+                <!-- 
                 <bean class="org.springframework.security.saml.metadata.ExtendedMetadataDelegate">
                     <constructor-arg>
                         <bean class="org.opensaml.saml2.metadata.provider.FilesystemMetadataProvider">
@@ -174,6 +174,7 @@
                         </bean>
                     </constructor-arg>
                 </bean>
+                 -->
             </list>
         </constructor-arg>
         <!-- OPTIONAL used when one of the metadata files contains information about this service provider -->
