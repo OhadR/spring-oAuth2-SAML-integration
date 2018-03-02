@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
   
 
-script: mvn clean tomcat7:run
+# script: mvn clean tomcat7:run
