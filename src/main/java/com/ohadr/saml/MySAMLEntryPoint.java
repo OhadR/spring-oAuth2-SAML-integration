@@ -32,7 +32,7 @@ public class MySAMLEntryPoint extends SAMLEntryPoint
     	
     	//get the redirect uri before sending the browser to the SAML IdP. becoz we want to
     	//know the subdomain of the referrer, and know if we need to load a new metadata.
-    	String redirectUri = request.getParameter( AuthorizationRequest.REDIRECT_URI );
+    	String redirectUri = request.getParameter( /*AuthorizationRequest.REDIRECT_URI*/"redirect_uri" );
     	
     	String subdomain = StringUtils.substringBetween(redirectUri, "//", ".");
     	
