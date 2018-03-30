@@ -19,6 +19,7 @@
 		<myScope>compile</myScope>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<com.ohadr.common-crypto.version>2.1-RELEASE</com.ohadr.common-crypto.version>
+		<ohadr.spring-security-oauth.version>2.0.9.RELEASE</ohadr.spring-security-oauth.version>
 	</properties>
 
 
