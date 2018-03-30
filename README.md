@@ -11,6 +11,18 @@ This document describes how to integrate the Spring-Security-oAuth2 project with
 
 I assume the reader is familiar with both oAuth and its components, and SAML and its components.
 
+## 04-2018: Spring Versions Updated
+
+On 04-2018, we have updated Spring versions.
+
+TBD: Spring Security: 4.0.3.RELEASE
+TBD: Spring: 4.2.4.RELEASE
+Spring Security oAuth: 2.0.9.RELEASE
+
+If you wish to use the older version, (3.1.X, oAuth 1.0.5), you can find it on a separated branch. The version in that branch is 1.6.0. The version on Master is 2.0.0-SNAPSHOT.
+
+NOTE: As this is still under construction, the new versions are on a separated branch (2.0). When work is done, it will be merged to master.
+
 # Motivation
 
 Suppose you want your system to support oAuth2.  I would recommend using the Spring-Security-oAuth project. When you use Spring, you enjoy the many benefits of this open-source package: it is widely used, there is responsive support (in the forum), it is open source, and much more. This package allows the developer to write an oAuth-client, an oAuth resource server, or an oAuth authorization server.
