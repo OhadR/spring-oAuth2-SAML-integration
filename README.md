@@ -42,6 +42,19 @@ The easiest way is to use tomcat-maven-plugin, by
     
 	...\>mvn tomcat7:run
 
+
+For this application purposes, MySQL is the Repository layer. Thus, validate the connection to the MySQL server (the properties in the default.properties), 
+and make sure the following table created using the script:
+
+<pre>
+CREATE table `ohads`.saml_message_store(
+    message_id VARCHAR(50) NOT NULL ,
+    message BLOB NOT NULL
+);
+</pre>
+
+note that 'ohads' is database-name (should appear in default.properties accordingly)
+
 # Questions?
 
 Feel free to open issues here if you have any unclear matter or any other question.
