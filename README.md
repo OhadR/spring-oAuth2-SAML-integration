@@ -15,12 +15,21 @@ I assume the reader is familiar with both oAuth and its components, and SAML and
 
 On 04-2018, we have updated Spring versions.
 
-* Spring Security: 4.0.3.RELEASE
-* Spring: 4.2.4.RELEASE
+* Spring:                4.2.4.RELEASE
+* Spring Security:       4.0.3.RELEASE
 * Spring Security oAuth: 2.0.9.RELEASE
+* Spring Security SAML:  1.0.1.RELEASE
 
+## 02-2020: Spring Versions Updated
 
-If you wish to use the older version, (3.1.X, oAuth 1.0.5), you can find it on a separated branch. The version in that branch is 1.6.0. The version on Master is 2.0.0-SNAPSHOT.
+On 02-2020, Spring versions were updated.
+
+* Spring:                5.2.3.RELEASE
+* Spring Security:       5.2.2.RELEASE
+* Spring Security oAuth: 2.0.18.RELEASE
+* Spring Security SAML:  1.0.3.RELEASE
+
+If you wish to use the older version, (3.1.X, oAuth 1.0.5), you can find it tagged. 
 
 # Motivation
 
