@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<com.ohadr.common-crypto.version>2.1-RELEASE</com.ohadr.common-crypto.version>
 		<ohadr.spring-security-oauth.version>2.0.18.RELEASE</ohadr.spring-security-oauth.version>
-		<ohadr.spring.security.version>5.2.2.RELEASE</ohadr.spring.security.version>
+		<ohadr.spring.security.version>5.5.7</ohadr.spring.security.version>
 		<ohadr.spring.version>5.2.3.RELEASE</ohadr.spring.version>
 		<ohadr.spring-security-saml.version>1.0.3.RELEASE</ohadr.spring-security-saml.version>
 	</properties>
